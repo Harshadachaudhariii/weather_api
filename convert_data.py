@@ -14,10 +14,10 @@ def convert_to_xml(data):
     root = ET.Element("weather_data")
     for index, row in data.iterrows():
         city_element=ET.SubElement(root, "city")
-        ET.SubElement(city_element, "name") = str(row['City'])
-        ET.SubElement(city_element, "temperature") = str(row['Temperature'])
-        ET.SubElement(city_element, "humidity") = str(row['Humidity'])
-        ET.SubElement(city_element, "weather") = str(row['Weather'])
+        ET.SubElement(city_element, "name").text = str(row["City"])
+        ET.SubElement(city_element, "temperature").text = str(row["Temperature"])
+        ET.SubElement(city_element, "humidity").text = str(row["Humidity"])
+        ET.SubElement(city_element, "weather").text = str(row["Weather"])
     tree = ET.ElementTree(root)
     tree.write(XML_FILE)
     return XML_FILE
