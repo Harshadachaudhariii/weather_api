@@ -17,7 +17,10 @@ def convert_to_xml(data):
         ET.SubElement(city_element, "name").text = str(row["City"])
         ET.SubElement(city_element, "temperature").text = str(row["Temperature"])
         ET.SubElement(city_element, "humidity").text = str(row["Humidity"])
-        ET.SubElement(city_element, "weather").text = str(row["Weather"])
+        # Only add weather if the column exists
+        weather_value = row.get("Weather", None)
+        if weather_value is not None:
+            ET.SubElement(city_element, "weather").text = str(weather_value)
     tree = ET.ElementTree(root)
     tree.write(XML_FILE)
     return XML_FILE
